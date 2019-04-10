@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-    <!--<img alt="Vue logo" src="./assets/logo.png">-->
+    <Header/>
+    <ProductsFilter/>
+    <Goods/>
+    <AddProduct/>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Footer from './components/Footer.vue'
+import Header from './components/Header.vue'
+import ProductsFilter from './components/ProductsFilter.vue'
+import Goods from './components/Goods.vue'
+import AddProduct from './components/AddProduct.vue'
+
 
 
 export default {
   name: 'app',
   components: {
-    Footer
+    Footer,
+    Header,
+    ProductsFilter,
+    Goods,
+    AddProduct
   }
 }
 </script>
