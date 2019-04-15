@@ -1,12 +1,42 @@
 <template>
   <div class="goods">
-    <div class="goods__container"></div>
+    <div class="goods__container">
+      <Product :product="product"/>
+      <Product :product="product2"/>
+      <Product :product="product"/>
+      <Product :product="product"/>
+      <Product :product="product"/>
+
+    </div>
   </div>
 </template>
 
 <script>
+  import Product from '../components/Product.vue'
+
   export default {
-    name: "Goods"
+    name: "Goods",
+    components: {
+      Product,
+    },
+    data() {
+      return {
+        product: {
+          name: 'T-shirt',
+          price: '5,00€',
+          size: 'size',
+          img: '/products/T-shirt.png',
+          sex: 'men',
+        },
+        product2: {
+          name: 'Pants FORCLAZ',
+          price: '30,00€',
+          size: 'size',
+          img: '/products/Pants.png',
+          sex: 'children',
+        }
+      }
+    }
   }
 </script>
 
