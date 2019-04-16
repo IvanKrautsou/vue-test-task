@@ -1,12 +1,7 @@
 <template>
   <div class="goods">
-    <div class="goods__container">
-      <Product :product="product"/>
-      <Product :product="product2"/>
-      <Product :product="product"/>
-      <Product :product="product"/>
-      <Product :product="product"/>
-
+    <div v-on:click="say('hi')" class="goods__container">
+      <Product v-for="item in products" :product="item"/>
     </div>
   </div>
 </template>
@@ -19,22 +14,44 @@
     components: {
       Product,
     },
+    methods: {
+      say: function (message) {
+        alert(message)
+      }
+    },
     data() {
       return {
-        product: {
+        products: [{
           name: 'T-shirt',
           price: '5,00€',
           size: 'size',
           img: '/products/T-shirt.png',
           sex: 'men',
-        },
-        product2: {
+        }, {
           name: 'Pants FORCLAZ',
           price: '30,00€',
           size: 'size',
           img: '/products/Pants.png',
           sex: 'children',
-        }
+        }, {
+          name: 'Pants FORCLAZ',
+          price: '60,00€',
+          size: '10litri',
+          img: '/products/backpack.png',
+          sex: 'men',
+        }, {
+          name: 'T-shirt',
+          price: '5,00€',
+          size: 'size',
+          img: '/products/T-shirt.png',
+          sex: 'women',
+        }, {
+          name: 'Pants FORCLAZ',
+          price: '60,00€',
+          size: '10litri',
+          img: '/products/backpack.png',
+          sex: 'children',
+        }]
       }
     }
   }
