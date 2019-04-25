@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header/>
-    <ProductsFilter/>
-    <Goods/>
+    <ProductsFilter @filter="filter"/>
+    <Goods :sexesList="sexesList"/>
     <AddProduct/>
     <Footer/>
   </div>
@@ -25,7 +25,19 @@ export default {
     ProductsFilter,
     Goods,
     AddProduct
-  }
+  },
+  data() {
+    return {
+      sexesList: []
+    }
+  },
+  methods: {
+    filter(sexes) {
+      this.sexesList = sexes;
+      console.log(this.sexesList);
+    }
+  },
+
 }
 </script>
 

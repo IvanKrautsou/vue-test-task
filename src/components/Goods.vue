@@ -1,7 +1,7 @@
 <template>
   <div class="goods">
-    <div v-on:click="say('hi')" class="goods__container">
-      <Product v-for="item in products" :product="item"/>
+    <div class="goods__container">
+      <Product v-for="item in filteredProducts" :product="item"  />
     </div>
   </div>
 </template>
@@ -14,40 +14,43 @@
     components: {
       Product,
     },
-    methods: {
-      say: function (message) {
-        alert(message)
+    props: {
+      sexesList: Array,
+    },
+    computed: {
+      filteredProducts: function () {
+        return this.products.filter((product) => this.sexesList.indexOf(product.sex) > -1);
       }
     },
     data() {
       return {
         products: [{
           name: 'T-shirt',
-          price: '5,00€',
+          price: 'men',
           size: 'size',
           img: '/products/T-shirt.png',
           sex: 'men',
         }, {
           name: 'Pants FORCLAZ',
-          price: '30,00€',
+          price: 'children',
           size: 'size',
           img: '/products/Pants.png',
           sex: 'children',
         }, {
           name: 'Pants FORCLAZ',
-          price: '60,00€',
+          price: 'men',
           size: '10litri',
           img: '/products/backpack.png',
           sex: 'men',
         }, {
           name: 'T-shirt',
-          price: '5,00€',
+          price: 'women',
           size: 'size',
           img: '/products/T-shirt.png',
           sex: 'women',
         }, {
           name: 'Pants FORCLAZ',
-          price: '60,00€',
+          price: 'children',
           size: '10litri',
           img: '/products/backpack.png',
           sex: 'children',

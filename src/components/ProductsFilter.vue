@@ -2,33 +2,51 @@
   <div class="filter">
     <div class="filter__controls">
       <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-men" type="checkbox" checked="checked">
+        <input id="filter-checkbox-men" type="checkbox" checked="checked" value="men" v-model="sexesList">
         <span class="checkbox__checkmark"></span>
         MEN
       </label>
 
       <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-women" type="checkbox" checked="checked">
+        <input id="filter-checkbox-women" type="checkbox" checked="checked" value="women" v-model="sexesList">
         <span class="checkbox__checkmark"></span>
         WOMEN
       </label>
 
       <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-children" type="checkbox" checked="checked">
+        <input id="filter-checkbox-children" type="checkbox" checked="checked" value="children" v-model="sexesList">
         <span class="checkbox__checkmark"></span>
         CHILDREN
       </label>
     </div>
 
-    <div class="filter__button">
-      SEE CHOUSEN PRODUCTS
+    <div class="filter__button" @click="$emit('filter', sexesList)">
+      SEE CHOSEN PRODUCTS
+    </div>
+
+    <div>
+      {{sexesList}}
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "ProductsFilter"
+    name: "ProductsFilter",
+    data() {
+      return {
+        sexesList: ["women", "men", "children"]
+      }
+    },
+    watch: {
+      sexesList: {
+        handler: function (val, oldVal) {
+          console.log(val, oldVal);
+          this.$emit('filter', val);
+        },
+        immediate: true
+      },
+    },
   }
 </script>
 

@@ -1,5 +1,9 @@
 <template>
-  <div class="goods__product product product_main-page">
+  <div
+      class="goods__product product product_main-page"
+      :class="{ product_selected: isActive }"
+      @click="isActive = !isActive"
+  >
     <div class="product__size">{{product.size}}</div>
     <div class="product__name">{{product.name}}</div>
     <div class="product__price">{{product.price}}</div>
@@ -15,6 +19,11 @@
     name: "Product",
     props: {
       product: Object,
+    },
+    data() {
+      return {
+        isActive: false
+      }
     }
   }
 </script>
