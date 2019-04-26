@@ -5,9 +5,9 @@
       <div class="header__links">
         <a href="/page.html">Home</a>
         <a href="/page.html">Products</a>
-        <div class="header__shopping-cart">
+        <div class="header__shopping-cart" @click="showProducts">
           <img class="header__foot" src="../static/shopping-cart.png" alt="code"/>
-          <div class="header__product-counter"></div>
+          <div class="header__product-counter">{{countOfProducts}}</div>
         </div>
       </div>
 
@@ -24,7 +24,18 @@
 
 <script>
   export default {
-    name: "Header"
+    name: "Header",
+    props: ['selectedProducts'],
+    methods: {
+      showProducts() {
+        console.log(this.selectedProducts);
+      },
+    },
+    computed: {
+      countOfProducts: function () {
+        return this.selectedProducts.length || '';
+      }
+    },
   }
 </script>
 

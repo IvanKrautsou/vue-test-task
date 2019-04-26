@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header :selectedProducts="selectedProducts"/>
     <ProductsFilter @filter="filter"/>
-    <Goods :sexesList="sexesList"/>
-    <AddProduct/>
+    <Goods :sexesList="sexesList" @add-product-to-chart="addProductToChart" :newProducts="newProducts"/>
+    <AddProduct @add-product="addProduct"/>
     <Footer/>
   </div>
 </template>
@@ -28,13 +28,20 @@ export default {
   },
   data() {
     return {
-      sexesList: []
+      sexesList: [],
+      selectedProducts: [],
+      newProducts: []
     }
   },
   methods: {
     filter(sexes) {
       this.sexesList = sexes;
-      console.log(this.sexesList);
+    },
+    addProductToChart(selectedProducts) {
+      this.selectedProducts = selectedProducts;
+    },
+    addProduct(product) {
+      this.newProducts.push(product)
     }
   },
 

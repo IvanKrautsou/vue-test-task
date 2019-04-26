@@ -41,7 +41,6 @@
     watch: {
       sexesList: {
         handler: function (val, oldVal) {
-          console.log(val, oldVal);
           this.$emit('filter', val);
         },
         immediate: true

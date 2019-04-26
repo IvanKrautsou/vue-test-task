@@ -1,14 +1,13 @@
 <template>
   <div
       class="goods__product product product_main-page"
-      :class="{ product_selected: isActive }"
-      @click="isActive = !isActive"
+      :class="{ product_selected: isSelected }"
+      @click="$emit('add-product-to-chart')"
   >
     <div class="product__size">{{product.size}}</div>
     <div class="product__name">{{product.name}}</div>
     <div class="product__price">{{product.price}}</div>
     <div class="product__img">
-      <!--<img src="/products/T-shirt.png">-->
       <img :src="product.img">
     </div>
   </div>
@@ -19,12 +18,13 @@
     name: "Product",
     props: {
       product: Object,
+      selectedProducts: Array,
     },
-    data() {
-      return {
-        isActive: false
+    computed: {
+      isSelected: function () {
+        return this.selectedProducts.indexOf(this.product) > -1;
       }
-    }
+    },
   }
 </script>
 
