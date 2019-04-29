@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <Header :selectedProducts="selectedProducts"/>
-    <ProductsFilter @filter="filter"/>
-    <Goods :sexesList="sexesList" @add-product-to-chart="addProductToChart" :newProducts="newProducts"/>
+    <ProductsFilter @filter="sexesList = $event"/>
+    <Goods
+        :products="filteredProducts"
+        @add-product-to-chart="addProductToChart"
+    />
     <AddProduct @add-product="addProduct"/>
     <Footer/>
   </div>
@@ -14,8 +17,8 @@ import Header from './components/Header.vue'
 import ProductsFilter from './components/ProductsFilter.vue'
 import Goods from './components/Goods.vue'
 import AddProduct from './components/AddProduct.vue'
-
-
+import products from './products.js'
+import Vue from 'vue'
 
 export default {
   name: 'app',
@@ -28,20 +31,25 @@ export default {
   },
   data() {
     return {
+      products,
       sexesList: [],
-      selectedProducts: [],
-      newProducts: []
+    }
+  },
+  computed: {
+    filteredProducts() {
+      return this.products.filter((product) => this.sexesList.includes(product.sex) )
+    },
+    selectedProducts() {
+      return this.products.filter(product => product.selected);
     }
   },
   methods: {
-    filter(sexes) {
-      this.sexesList = sexes;
-    },
-    addProductToChart(selectedProducts) {
-      this.selectedProducts = selectedProducts;
+    addProductToChart(productId) {
+      const product = this.products.find(product => product.id === productId);
+      Vue.set(product, 'selected', !product.selected)
     },
     addProduct(product) {
-      this.newProducts.push(product)
+      this.products.push(product)
     }
   },
 

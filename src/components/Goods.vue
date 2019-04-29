@@ -2,10 +2,10 @@
   <div class="goods">
     <div class="goods__container">
       <Product
-          v-for="item in filteredProducts"
+          v-for="item in products"
           :product="item"
-          @add-product-to-chart="addProductInChart(item)"
-          :selectedProducts="selectedProducts"/>
+          @add-product-to-chart="$emit('add-product-to-chart', item.id)"
+      />
     </div>
   </div>
 </template>
@@ -19,63 +19,9 @@
       Product,
     },
     props: {
-      sexesList: Array,
-      newProducts: Array
+      products: Array
     },
-    data() {
-      return {
-        selectedProducts: [],
-        products,
-      }
-    },
-    methods: {
-      addProductInChart: function (product) {
-        if (this.selectedProducts.indexOf(product) > -1) {
-          this.selectedProducts.splice(this.selectedProducts.indexOf(product), 1)
-        } else {
-          this.selectedProducts.push(product);
-        }
-        this.$emit('add-product-to-chart', this.selectedProducts);
-      }
-    },
-    computed: {
-      filteredProducts: function () {
-        return [...this.products, ...this.newProducts].filter((product) => this.sexesList.includes(product.sex));
-      }
-    }
   }
-
-  const products = [{
-    name: 'T-shirt',
-    price: 'men',
-    size: 'size',
-    img: '/products/T-shirt.png',
-    sex: 'men',
-  }, {
-    name: 'Pants FORCLAZ',
-    price: 'children',
-    size: 'size',
-    img: '/products/Pants.png',
-    sex: 'children',
-  }, {
-    name: 'Pants FORCLAZ',
-    price: 'men',
-    size: '10litri',
-    img: '/products/backpack.png',
-    sex: 'men',
-  }, {
-    name: 'T-shirt',
-    price: 'women',
-    size: 'size',
-    img: '/products/T-shirt.png',
-    sex: 'women',
-  }, {
-    name: 'Pants FORCLAZ',
-    price: 'children',
-    size: '10litri',
-    img: '/products/backpack.png',
-    sex: 'children',
-  }]
 </script>
 
 <style scoped lang="scss">

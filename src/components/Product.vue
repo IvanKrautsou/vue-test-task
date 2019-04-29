@@ -1,7 +1,7 @@
 <template>
   <div
       class="goods__product product product_main-page"
-      :class="{ product_selected: isSelected }"
+      :class="{ product_selected: product.selected }"
       @click="$emit('add-product-to-chart')"
   >
     <div class="product__size">{{product.size}}</div>
@@ -18,12 +18,6 @@
     name: "Product",
     props: {
       product: Object,
-      selectedProducts: Array,
-    },
-    computed: {
-      isSelected: function () {
-        return this.selectedProducts.indexOf(this.product) > -1;
-      }
     },
   }
 </script>

@@ -40,7 +40,7 @@
     },
     watch: {
       sexesList: {
-        handler: function (val, oldVal) {
+        handler(val) {
           this.$emit('filter', val);
         },
         immediate: true

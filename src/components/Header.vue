@@ -32,7 +32,7 @@
       },
     },
     computed: {
-      countOfProducts: function () {
+      countOfProducts () {
         return this.selectedProducts.length || '';
       }
     },
