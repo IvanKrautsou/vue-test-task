@@ -1,23 +1,9 @@
 <template>
   <div class="filter">
-    <div class="filter__controls">
-      <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-men" type="checkbox" checked="checked" value="men" v-model="sexesList">
-        <span class="checkbox__checkmark"></span>
-        MEN
-      </label>
-
-      <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-women" type="checkbox" checked="checked" value="women" v-model="sexesList">
-        <span class="checkbox__checkmark"></span>
-        WOMEN
-      </label>
-
-      <label class="filter__checkbox checkbox">
-        <input id="filter-checkbox-children" type="checkbox" checked="checked" value="children" v-model="sexesList">
-        <span class="checkbox__checkmark"></span>
-        CHILDREN
-      </label>
+    <div class="filter__controls" @click="qwer">
+      <Checkbox v-model="showMen">MEN</Checkbox>
+      <Checkbox :value="showWomen" @input="showWomen = $event">WOMEN</Checkbox>
+      <Checkbox v-model="showChildren">CHILDREN</Checkbox>
     </div>
 
     <div class="filter__button" @click="$emit('filter', sexesList)">
@@ -26,16 +12,39 @@
 
     <div>
       {{sexesList}}
+
     </div>
   </div>
 </template>
 
 <script>
+  import Checkbox from '../components/FilterCheckbox.vue'
+
   export default {
     name: "ProductsFilter",
+    components: {
+      Checkbox,
+    },
     data() {
       return {
-        sexesList: ["women", "men", "children"]
+        showMen: true,
+        showWomen: true,
+        showChildren: true
+      }
+    },
+    methods: {
+      qwer() {
+        console.log(this.sexesList);
+        console.log(this.showMen)
+      }
+    },
+    computed: {
+      sexesList() {
+        let list = [];
+        if (this.showMen) list.push('men');
+        if (this.showWomen) list.push('women');
+        if (this.showChildren) list.push('children');
+        return list;
       }
     },
     watch: {
