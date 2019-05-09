@@ -1,13 +1,9 @@
 <template>
   <div class="filter">
-    <div class="filter__controls" @click="qwer">
+    <div class="filter__controls">
       <Control type="checkbox" v-model="showMen">MEN</Control>
       <Control type="checkbox" :value="showWomen" @input="showWomen = $event">WOMEN</Control>
       <Control type="checkbox" v-model="showChildren">CHILDREN</Control>
-
-      <!--<Checkbox v-model="showMen">MEN</Checkbox>-->
-      <!--<Checkbox :value="showWomen" @input="showWomen = $event">WOMEN</Checkbox>-->
-      <!--<Checkbox v-model="showChildren">CHILDREN</Checkbox>-->
     </div>
 
     <div class="filter__button" @click="$emit('filter', sexesList)">
