@@ -50,7 +50,7 @@
       left: 0;
       height: 24px;
       width: 25px;
-      background: url(../static/noSelected.png);
+      background: url(../../static/noSelected.png);
 
       &::after {
         content: "";
@@ -58,7 +58,7 @@
         display: none;
         height: 24px;
         width: 25px;
-        background: url(../static/selected.png);
+        background: url(../../static/selected.png);
 
         @at-root #{$blockName} input:checked ~ & {
           display: block;

@@ -1,9 +1,13 @@
 <template>
   <div class="filter">
     <div class="filter__controls" @click="qwer">
-      <Checkbox v-model="showMen">MEN</Checkbox>
-      <Checkbox :value="showWomen" @input="showWomen = $event">WOMEN</Checkbox>
-      <Checkbox v-model="showChildren">CHILDREN</Checkbox>
+      <Control type="checkbox" v-model="showMen">MEN</Control>
+      <Control type="checkbox" :value="showWomen" @input="showWomen = $event">WOMEN</Control>
+      <Control type="checkbox" v-model="showChildren">CHILDREN</Control>
+
+      <!--<Checkbox v-model="showMen">MEN</Checkbox>-->
+      <!--<Checkbox :value="showWomen" @input="showWomen = $event">WOMEN</Checkbox>-->
+      <!--<Checkbox v-model="showChildren">CHILDREN</Checkbox>-->
     </div>
 
     <div class="filter__button" @click="$emit('filter', sexesList)">
@@ -18,24 +22,20 @@
 </template>
 
 <script>
-  import Checkbox from '../components/FilterCheckbox.vue'
+  import Control from '../components/core/Control.vue'
+
 
   export default {
     name: "ProductsFilter",
     components: {
-      Checkbox,
+      Control
     },
     data() {
       return {
+        checkboxOptions: [ "men", "women", "children"],
         showMen: true,
         showWomen: true,
         showChildren: true
-      }
-    },
-    methods: {
-      qwer() {
-        console.log(this.sexesList);
-        console.log(this.showMen)
       }
     },
     computed: {
@@ -94,53 +94,6 @@
       @media (max-width: 350px) {
         max-width: 99px;
         margin-top: 5px;
-      }
-    }
-  }
-
-  .checkbox {
-    $blockName: &;
-
-    display: inline-block;
-    position: relative;
-    padding-left: 35px;
-    padding-right: 40px;
-    cursor: pointer;
-    font-size: 18px;
-    user-select: none;
-
-    @media (max-width: 900px) {
-      display: block;
-      margin-bottom: 10px;
-      padding-right: 0;
-    }
-
-    input {
-      opacity: 0;
-      height: 0;
-      width: 0;
-      display: inline-block;
-    }
-
-    &__checkmark {
-      position: absolute;
-      top: -2px;
-      left: 0;
-      height: 24px;
-      width: 25px;
-      background: url(../static/noSelected.png);
-
-      &::after {
-        content: "";
-        position: absolute;
-        display: none;
-        height: 24px;
-        width: 25px;
-        background: url(../static/selected.png);
-
-        @at-root #{$blockName} input:checked ~ & {
-          display: block;
-        }
       }
     }
   }
