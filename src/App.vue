@@ -17,8 +17,9 @@ import Header from './components/Header.vue'
 import ProductsFilter from './components/ProductsFilter.vue'
 import Goods from './components/Goods.vue'
 import AddProduct from './components/AddProduct.vue'
-import products from './products.js'
+// import products from './products.js'
 import Vue from 'vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -31,9 +32,14 @@ export default {
   },
   data() {
     return {
-      products,
+      products: [],
       sexesList: [],
     }
+  },
+  mounted: function () {
+    axios.get('/api/products.json')
+      .then((response) => this.products = response.data)
+      .catch(console.log)
   },
   computed: {
     filteredProducts() {
@@ -49,11 +55,14 @@ export default {
       Vue.set(product, 'selected', !product.selected)
     },
     addProduct(product) {
-      this.products.push(product)
+      this.products.push(product);
+      console.log(this.products);
+
     }
-  },
+  }
 
 }
+
 </script>
 
 
