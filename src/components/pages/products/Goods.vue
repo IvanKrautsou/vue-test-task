@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import Product from '../components/Product.vue'
+  import Product from '../../Product.vue'
 
   export default {
     name: "Goods",
@@ -25,8 +25,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../styles/variables.scss";
-  @import "../styles/functions.scss";
+  @import "../../../styles/variables.scss";
+  @import "../../../styles/functions.scss";
 
   .goods {
     padding: 30px 0;

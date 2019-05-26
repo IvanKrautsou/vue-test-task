@@ -10,6 +10,10 @@
     <div class="product__img">
       <img :src="product.img">
     </div>
+    <div class="product__showInfo">
+      <router-link :to="{ name: 'product', params: { id: product.id }}">info</router-link>
+
+    </div>
   </div>
 </template>
 
@@ -85,6 +89,13 @@
       img {
         vertical-align: middle;
       }
+    }
+
+    &__showInfo {
+      position: absolute;
+      top: 30px;
+      right: 33px;
+      font-size: 22px;
     }
   }
 </style>

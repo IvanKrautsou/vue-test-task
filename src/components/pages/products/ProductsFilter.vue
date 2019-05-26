@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import Control from '../components/core/Control.vue'
+  import Control from '../../core/Control.vue'
 
 
   export default {
