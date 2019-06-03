@@ -12,7 +12,6 @@
 
     <div>
       {{sexesList}}
-
     </div>
   </div>
 </template>
