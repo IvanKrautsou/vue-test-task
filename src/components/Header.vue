@@ -3,14 +3,13 @@
     <div class="header__head">
       <img class="header__foot" src="../static/foot.png" alt="code"/>
       <div class="header__links">
-        <a href="/page.html">Home</a>
+        <a href="/">Home</a>
         <router-link to="/">Products</router-link>
         <router-link to="/basket">basket</router-link>
 
-        <!--<a href="/page.html">Products</a>-->
-        <div class="header__shopping-cart" >
+        <div class="header__shopping-cart" @click="showProducts"  >
           <img class="header__foot" src="../static/shopping-cart.png" alt="code"/>
-          <div class="header__product-counter"></div>
+          <div class="header__product-counter">{{countOfProducts}}</div>
         </div>
       </div>
 
@@ -29,16 +28,16 @@
   export default {
     name: "Header",
     props: ['selectedProducts'],
-    // methods: {
-    //   showProducts() {
-    //     console.log(this.selectedProducts);
-    //   },
-    // },
-    // computed: {
-    //   countOfProducts () {
-    //     return this.selectedProducts.length || '';
-    //   }
-    // },
+    methods: {
+      showProducts() {
+        console.log(this.$store.state.chosenProducts);
+      },
+    },
+    computed: {
+      countOfProducts () {
+        return this.$store.state.chosenProducts.length || 0;
+      }
+    },
   }
 </script>
 
